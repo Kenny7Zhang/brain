@@ -11,10 +11,11 @@ def read_3d_img(path):
     img = nib.load(path)
     return img.get_data()
 
-def read_dfs_to_label(path):
+def read_dfs_to_label(path, shape):
     '''
     read .dfs file and return 3d matrix of label
     :param path: (String) file path
+    :param shape: (tuple) img shape
     :return: (np.array) 3d matrix of label
     '''
     reader = dfsio.readdfs(path)
@@ -23,7 +24,7 @@ def read_dfs_to_label(path):
     print('vertices shape {0}'.format(vertices.shape))
     vertices = vertices.astype(np.int32)
     print(vertices.astype(np.int32))
-    labels = np.zeros(img.shape)
+    labels = np.zeros(shape)
     for vertix in vertices:
         labels[vertix[0]][vertix[1]][vertix[2]] = 1
     return labels
@@ -33,5 +34,5 @@ if __name__ == '__main__':
     inner_cortex_path = 'data1/OAS1_0001_MR1_mpr_n4_anon_111_t88_gfc.inner.cortex.dfs'
     pial_cortex_path = 'data1/OAS1_0001_MR1_mpr_n4_anon_111_t88_gfc.pial.cortex.dfs'
     img = read_3d_img(img_path)
-    inner_cortex_label = read_dfs_to_label(inner_cortex_path)
-    pial_cortex_path = read_dfs_to_label(pial_cortex_path)
+    inner_cortex_label = read_dfs_to_label(inner_cortex_path, img.shape)
+    pial_cortex_path = read_dfs_to_label(pial_cortex_path, img.shape)
