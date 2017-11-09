@@ -20,10 +20,10 @@ def read_dfs_to_label(path, shape):
     '''
     reader = dfsio.readdfs(path)
     vertices = reader.vertices
-    print(vertices)
-    print('vertices shape {0}'.format(vertices.shape))
+    #print(vertices)
+    #print('vertices shape {0}'.format(vertices.shape))
     vertices = vertices.astype(np.int32)
-    print(vertices.astype(np.int32))
+    #print(vertices.astype(np.int32))
     labels = np.zeros(shape)
     for vertix in vertices:
         labels[vertix[0]][vertix[1]][vertix[2]] = 1
