@@ -21,8 +21,10 @@ In input layer, we input batch of 3D patches. Then in flatten layer we flat the 
 We cut 3D models into 2D images slice by slice, which means we transfer the problem into finding edge of objects in 2D images. We use Holistically-Nested Edge Detection method[[1]](https://arxiv.org/pdf/1504.06375.pdf).
 
 The architecture of the model is as follows:
+
 <img src="images/3.jpeg" width="200" height="200">
 <img src="images/4.jpeg" width="200" height="200">
+
 
 The architectures contains five convolutional layers and each is followed by a side output layer. For our MRI image, the distribution of edge and non-edge is extremely biased. About 90% of the label is 0 and only 10% is 1. So, we use class-balanced cross-entropy as our loss function instead of general cross-entropy.
 
