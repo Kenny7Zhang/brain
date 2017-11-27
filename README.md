@@ -21,8 +21,8 @@ In input layer, we input batch of 3D patches. Then in flatten layer we flat the 
 We cut 3D models into 2D images slice by slice, which means we transfer the problem into finding edge of objects in 2D images. We use Holistically-Nested Edge Detection method[[1]](https://arxiv.org/pdf/1504.06375.pdf).
 
 The architecture of the model is as follows:
-![](images/3.jpeg)
-![](images/4.jpeg)
+<img src="images/3.jpeg" width="200" height="200">
+<img src="images/4.jpeg" width="200" height="200">
 
 The architectures contains five convolutional layers and each is followed by a side output layer. For our MRI image, the distribution of edge and non-edge is extremely biased. About 90% of the label is 0 and only 10% is 1. So, we use class-balanced cross-entropy as our loss function instead of general cross-entropy.
 
@@ -43,7 +43,9 @@ array([[0, 0, 0, ..., 0, 0, 0],
        [0, 0, 0, ..., 0, 0, 0]], dtype=int16)
 ```
 It is a image like:
-![](images/1.jpeg)
+
+<img src="images/1.jpeg" width="200" height="200">
+
 The corresponding label is like:
 
 ```
@@ -56,7 +58,8 @@ The corresponding label is like:
  [  79.18741608   91.3355484   149.72851562]]
 ```
 We convert it to 3D matrix and visulize it like:
-![](images/2.jpeg)
+
+<img src="images/2.jpeg" width="200" height="200">
 
 These two 3D matrix are the input and output of our network.
 
@@ -80,10 +83,13 @@ The test accuracy of the model is 95%, which is higher than baseline.
 We visualized our result.
 
 This is the original image:
-![](images/5.jpeg)
+
+<img src="images/5.jpeg" width="200" height="200">
 
 This is the ground-true label:
-![](images/6.jpeg)
+
+<img src="images/6.jpeg" width="200" height="200">
 
 This is the label predited:
-![](images/7.jpeg)
+
+<img src="images/7.jpeg" width="200" height="200">
