@@ -26,7 +26,7 @@ The architecture of the model is as follows:
 <img src="images/4.jpeg" width="200" height="200">
 
 
-The architectures contains five convolutional layers and each is followed by a side output layer. For our MRI image, the distribution of edge and non-edge is extremely biased. About 90% of the label is 0 and only 10% is 1. So, we use class-balanced cross-entropy as our loss function instead of general cross-entropy.
+The architectures contains five convolutional layers and each is followed by a side output layer. We concatenate the five side output layers and make another 1-filter convolutional layer, the output is our predicted image. We will set a threshold to determine whether a pixel in the image is edge or not. Then we calculate the loss between our predicted image and ground-truth image. For our MRI image, the distribution of edge and non-edge is extremely biased. About 90% of the label is 0 and only 10% is 1. So, we use class-balanced cross-entropy as our loss function instead of general cross-entropy.
 
 ## Experiments
 
@@ -67,20 +67,20 @@ These two 3D matrix are the input and output of our network.
 
 ### Training
 
-We use seven brains for training and one brain for testing. The batch size is set as 20 and the number of epoch is 200.
+We use seven brains for training and one brain for testing. The batch size is set as 20 and the number of epoch is 200. We train our model in GPU for 2-3 hours.
 
 ### Evaluation
-We compare all the output label with the ground-truth label and calculate the accuracy as our evaluation metric.
+We compare all the output label with the ground-truth label and calculate the precision, recall and fscore as our evaluation metrics.
 
 ## Results
 
 ### 1. Baseline
-We define our baseline model as a model that classifies all label into 0. It has an average test accuracy of 90%.
+We define our baseline model as a model that classifies all label into 1. It has a precision of 0.03, recall of 1 and fscore of 0.058.
 
 ### 2. 3D patch
 The result of this model is bad. The performance is the same as baseline model. It means the model can not learn any feature of a patch to determine whether it is edge or not. We tried using 3D convolutional layer instead of cutting input data into patches. The result is not changed. We think it is likely because the size of each patch is too small to learn the features. So we increase the kernel size of filters of 3D convolutional layer, but the time and memory consumption are both high. It turns out to be a bad model.
 ### 3. Slice by slice
-The test accuracy of the model is 95%, which is higher than baseline.
+Using our model, we detect the surface of one brain for testing. 
 
 We visualized our result.
 
@@ -92,6 +92,22 @@ This is the ground-true label:
 
 <img src="images/6.jpeg" width="200" height="200">
 
-This is the label predited:
+We have a hyperparameter threshold and we do not know which value it should be. So we run our model under different thresholds from 0 to 1 with the interval of 0.05. Here is all the output images.
 
-<img src="images/7.jpeg" width="200" height="200">
+<img src="images/8.png" width="800" height="600">
+
+We calculate the evaluation metrics of ouput under different thresholds. And we can see that when threshold is set as 0.85, the fscore is maximum. When threshold is set as 0.95, the precision is maximum. When threshold is set as 0.0, the recall is maximum.
+
+<img src="images/9.jpeg" width="600" height="300">
+
+<img src="images/10.jpeg" width="600" height="300">
+
+<img src="images/11.jpeg" width="600" height="300">
+
+We can compare the output images of maximum fscore, precision and recall.
+
+<img src="images/12.jpeg" width="600" height="600">
+
+We choose the maximum fscore image as our output. So the shreshold of our model is 0.85. We compare the metrics between baseline and our model as follows.
+
+<img src="images/13.png" width="600" height="300">
