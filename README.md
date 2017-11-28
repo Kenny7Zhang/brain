@@ -88,11 +88,11 @@ This is the original image:
 
 <img src="images/5.jpeg" width="200" height="200">
 
-This is the ground-true label:
+This is the ground-truth label:
 
 <img src="images/6.jpeg" width="200" height="200">
 
-We have a hyperparameter threshold and we do not know which value it should be. So we run our model under different thresholds from 0 to 1 with the interval of 0.05. Here is all the output images.
+We have a hyperparameter threshold and we do not know which value it should be. So we run our model under different thresholds from 0 to 1 with an interval of 0.05. Here are all the output images.
 
 <img src="images/8.png" width="800" height="600">
 
