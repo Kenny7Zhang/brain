@@ -80,7 +80,7 @@ We define our baseline model as a model that classifies all label into 1. It has
 ### 2. 3D patch
 The result of this model is bad. The performance is the same as baseline model. It means the model can not learn any feature of a patch to determine whether it is edge or not. We tried using 3D convolutional layer instead of cutting input data into patches. The result is not changed. We think it is likely because the size of each patch is too small to learn the features. So we increase the kernel size of filters of 3D convolutional layer, but the time and memory consumption are both high. It turns out to be a bad model.
 ### 3. Slice by slice
-Using our model, we detect the surface of one brain for testing. 
+By using our model, we detect the surface of one brain for testing. 
 
 We visualized our result.
 
