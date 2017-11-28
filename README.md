@@ -44,7 +44,7 @@ array([[0, 0, 0, ..., 0, 0, 0],
        [0, 0, 0, ..., 0, 0, 0],
        [0, 0, 0, ..., 0, 0, 0]], dtype=int16)
 ```
-It is a image like:
+It is an image like:
 
 <img src="images/1.jpeg" width="200" height="200">
 
@@ -70,7 +70,7 @@ These two 3D matrix are the input and output of our network.
 We use seven brains for training and one brain for testing. The batch size is set as 20 and the number of epoch is 200. We train our model in GPU for 2-3 hours.
 
 ### Evaluation
-We compare all the output label with the ground-truth label and calculate the precision, recall and fscore as our evaluation metrics.
+We compare all the output labels with the ground-truth labels and calculate precision, recall and fscore as our evaluation metrics.
 
 ## Results
 
@@ -111,3 +111,6 @@ We can compare the output images of maximum fscore, precision and recall.
 We choose the maximum fscore image as our output. So the shreshold of our model is 0.85. We compare the metrics between baseline and our model as follows.
 
 <img src="images/13.png" width="600" height="300">
+
+## Reference
+[1] Xie, S. and Tu, Z., 2015. Holistically-nested edge detection. In Proceedings of the IEEE international conference on computer vision (pp. 1395-1403).
