@@ -112,5 +112,5 @@ We choose the maximum fscore image as our output. So the shreshold of our model 
 
 <img src="images/13.png" width="600" height="300">
 
-## Reference
-[1] Xie, S. and Tu, Z., 2015. Holistically-nested edge detection. In Proceedings of the IEEE international conference on computer vision (pp. 1395-1403).
+## References
+[1] [Xie, S. and Tu, Z., 2015. Holistically-nested edge detection. In Proceedings of the IEEE international conference on computer vision (pp. 1395-1403)](https://arxiv.org/pdf/1504.06375.pdf)
