@@ -3,7 +3,7 @@
 In our project, we intend to detect the Pial Surface in Magnetic Resonance Image (MRI) of a brain. Pial Surface, in forms of tessellation, depends on Inner Cortical Surface and the tissue fraction of Grey Matter, White Matter and CSF in the brain. The generation of pial surface contributes to the Brain Registration, which is generally used in the biomedical and usually need a long-time computing by previous works. Beside to reduce the running time. The requirement of the surface model should also be achieved by our method, so that the tessellation can often be represented as a high resolution triangulated mesh with ~700,000 triangles with cortex surface information.
 
 ## Methods
-We tried two methods to detect surface of brain in MRI. Our training data are 3D brain models. The first method is to cut 3D models into patches and the second method is to cut 3D models into 2D images slice by slice. After the experiments, we find that the latter method outperforms the former. By our design, the input of the network model should be a 3-D brain image as the data and its vertices of the Pial Surface tessellation as the label; meanwhile, the output of our network model should be the prediction of the vertices wanted.
+We tried two methods to detect surface of brain in MRI. Our training data are 3D brain models. The first method is to cut 3D models into patches and the second method is to cut 3D models into 2D images slice by slice. After the experiments, we find that the latter method outperforms the former. By our design on training, the input of the network model should be a 3-D brain image as the data and its vertices of the Pial Surface tessellation as the label; meanwhile, the output of our network model should be the prediction of the vertices wanted. As to the test, we intend to input a MR image of a brain and then get a corresponding Pial Surface.
 
 ### 1. 3D patch
 We cut 3D models into patches. And the corresponding label is the central label of the patch. The architecture of this model is simple. 
@@ -112,10 +112,19 @@ We choose the maximum fscore image as our output. So the shreshold of our model 
 
 <img src="images/13.png" width="600" height="300">
 
+## Conclusion
+In this work, we propose a Holistically-Nested network to predict the vertices of the tessellation for the pial surface of a brain. A Pial Surface can be obtained with F-score 0.477 after the training. In addition, the computing time of our model, when working on a single brain, is 4.31 seconds, compared with the previous work 10 minutes around. The result emphasizes that our model do well in detecting the Pial Surface within an excellent computing time.
+
 ## Extension Research
+Our network model gives a nice work on predicting the vertices of the tessellation. However, it is not perfect, since we can find that the boundary of the distribution of vertices is much thicker than that of the truth. A thicker boundary brings extra errors to the results without doubt. Thus, we intend to explore a sort of line-thinner to optimize the result somewhat.
 
-### Line Thinning Algorithm
+### Zhang-Suen Thinning Algorithm
+The line-thinner is based on Zhang-Suen Thinning Algorithm, which detects and changes the condition of the neigher points pixel by pixel iteratively. The skeletonization results are shown as follow. From the figure, we can see the vertices boundary are significantly thinner.
 
+<img src="images/14.png" width="600" height="300">
+
+(Notice: We do not mean this result is better than the output of the Network. We just want to know if the final result can be modified by adding some extra optimization algorithm on Graph Processing.)
 
 ## References
 [1] [Xie, S. and Tu, Z., 2015. Holistically-nested edge detection. In Proceedings of the IEEE international conference on computer vision (pp. 1395-1403)](https://arxiv.org/pdf/1504.06375.pdf)
+[2] Page48-50, "Character Recognition Systems: A Guide for Students and Practitioners" By Mohamed Cheriet, Nawwaf Kharma, Cheng-Lin Liu, Ching Suen 
